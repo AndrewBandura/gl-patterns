@@ -1,16 +1,15 @@
 package com.flowergarden.bouquet;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
-import com.flowergarden.flowers.Chamomile;
+import java.util.*;
+
 import com.flowergarden.flowers.GeneralFlower;
-import com.flowergarden.flowers.Rose;
+import com.flowergarden.pattern.iterator.CustomIterator;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class MarriedBouquet implements Bouquet<GeneralFlower> {
 
 	private float assemblePrice = 120;
@@ -53,5 +52,49 @@ public class MarriedBouquet implements Bouquet<GeneralFlower> {
 
 	public void setAssembledPrice(float price) {
 		assemblePrice = price;
+	}
+
+	@Override
+	public CustomIterator iterator(boolean direction) {
+		return new GeneralFlowerIterator(direction);
+	}
+
+	private class GeneralFlowerIterator implements CustomIterator {
+
+		int size = flowerList.size();
+		private int cursor;
+
+		public GeneralFlowerIterator(boolean direction) {
+			cursor = direction ? 0 : size;
+		}
+
+		@Override
+		public boolean hasNext() {
+			return cursor < size;
+		}
+
+		@Override
+		public GeneralFlower next() {
+			if (!hasNext()) {
+				throw new NoSuchElementException();
+			}
+
+			return flowerList.get(cursor++);
+		}
+
+		@Override
+		public boolean hasPrevious() {
+			return cursor > 0;
+		}
+
+		@Override
+		public GeneralFlower previous() {
+			if (!hasPrevious()) {
+				throw new NoSuchElementException();
+			}
+			int i = cursor-1;
+			cursor = i;
+			return flowerList.get(i);
+		}
 	}
 }

@@ -5,5 +5,5 @@ import com.flowergarden.flowers.Flower;
 import com.flowergarden.flowers.Rose;
 
 public interface FlowerFactory {
-    Flower create(int freshness);
+    Flower<Integer> create(int freshness);
 }

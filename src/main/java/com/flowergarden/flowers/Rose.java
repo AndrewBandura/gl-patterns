@@ -4,7 +4,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import com.flowergarden.pattern.builder.RoseBuilder;
 import com.flowergarden.properties.FreshnessInteger;
+import lombok.Setter;
 
+@Setter
 @XmlRootElement
 public class Rose extends GeneralFlower {
 	

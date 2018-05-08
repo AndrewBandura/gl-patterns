@@ -3,7 +3,9 @@ package com.flowergarden.flowers;
 import com.flowergarden.pattern.builder.ChamomileBuilder;
 import com.flowergarden.pattern.builder.RoseBuilder;
 import com.flowergarden.properties.FreshnessInteger;
+import lombok.Setter;
 
+@Setter
 public class Chamomile extends GeneralFlower {
 	
 	private int petals;

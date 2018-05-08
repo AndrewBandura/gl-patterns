@@ -1,5 +1,6 @@
 package com.flowergarden.bouquet;
 import java.util.Collection;
+import com.flowergarden.pattern.iterator.CustomIterator;
 
 public interface Bouquet<T> {
 	float getPrice();
@@ -7,4 +8,5 @@ public interface Bouquet<T> {
 	Collection<T> searchFlowersByLenght(int start, int end);
 	void sortByFreshness();
 	Collection<T> getFlowers();
+	CustomIterator iterator(boolean direction);
 }
